@@ -9,13 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class GoogleAuthController extends Controller
 {
-    // Step 1: Redirect to Google
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->stateless()->redirect();
     }
 
-    // Step 2: Handle callback
+
     public function handleGoogleCallback()
     {
         $googleUser = Socialite::driver('google')->stateless()->user();
@@ -37,6 +36,15 @@ class GoogleAuthController extends Controller
         return response()->json([
             'message' => 'User logged in successfully',
             'user' => $user
+        ]);
+    }
+
+    public function logout()
+    {
+        Auth::logout(); // Remove user from session
+
+        return response()->json([
+            'message' => 'User logged out successfully'
         ]);
     }
 }

@@ -13,8 +13,9 @@ Route::get('/', function () {
 });
 
 // Google OAuth login routes
-Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
-Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
+Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
+Route::post('auth/logout', [GoogleAuthController::class, 'logout']);
 
 // Protected routes (require login) - using Laravel's Auth
 Route::middleware('auth')->group(function () {
