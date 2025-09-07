@@ -5,13 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleAuthController;
 
 
-Route::get('/', function () {
-    return response()->json([
-        'message' => 'Welcome to the API',
-        'login_google' => url('/api/auth/google')
-    ]);
-});
-
 // Google OAuth login routes
 Route::get('auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
