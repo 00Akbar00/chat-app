@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id')->primary(); // UUID instead of auto-increment id
-            $table->string('name');
+            $table->uuid('id')->primary();
+            $table->string(column: 'name');
             $table->string('email')->unique();
             $table->string('google_id')->nullable()->unique();
             $table->string('avatar')->nullable();
