@@ -18,9 +18,10 @@ class AuthRequest extends FormRequest
             'password' => 'required|string|min:6',
         ];
 
-        // Add name rule only for signUp
+        // Add name & confirm_password validation only for signup
         if ($this->isMethod('post') && $this->routeIs('auth.signup')) {
             $rules['name'] = 'required|string|max:255';
+            $rules['confirm_password'] = 'required|string|min:6|same:password';
         }
 
         return $rules;
@@ -34,6 +35,8 @@ class AuthRequest extends FormRequest
             'email.email' => 'Please provide a valid email address',
             'password.required' => 'Password is required',
             'password.min' => 'Password must be at least 6 characters',
+            'confirm_password.required' => 'Please confirm your password',
+            'confirm_password.same' => 'Passwords do not match',
         ];
     }
 }
